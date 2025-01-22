@@ -17,10 +17,14 @@ def clean_text(text):
 
 # Streamlit app
 def main():
+    # Add a "Support Me" button in the sidebar
+    st.sidebar.title("Support Me")
+    st.sidebar.markdown("[Buy Me a Coffee](https://www.buymeacoffee.com/Hameed13)", unsafe_allow_html=True)
+    
     st.title("Fake News Detector")
     st.write("Classifies news articles as Fake or Real.")
     
-    #Input from user
+    # Input from user
     title = st.text_input("News Title")
     content = st.text_area("News Content")
     
@@ -32,12 +36,12 @@ def main():
         # Transform input using vectorizer
         input_vectorized = vectorizer.transform([cleaned_text])
         
-        # predict label
+        # Predict label
         prediction = model.predict(input_vectorized)
         result = "REAL" if prediction[0] == 1 else "FAKE"
         
         # Display result 
         st.subheader(f"The news is classified as: {result}")
-        
+
 if __name__ == "__main__":
-    main()        
+    main()
